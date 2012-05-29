@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileDataService", "MobileDataService\MobileDataService.csproj", "{FFA7B0EA-0895-45B4-8B14-C5E95101D317}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppManagerMobileTest", "AppManagerMobileTest\AppManagerMobileTest.csproj", "{196C4948-5C37-4111-BE2A-672E68BBEC50}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9182C884-8570-497F-A4CD-5C01AE47817D}"
+	ProjectSection(SolutionItems) = preProject
+		AppManagerMobile.vsmdi = AppManagerMobile.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AppManager", "http://localhost:6464/AppManager", "{D53AFA79-4BBD-47BC-8A3E-E386B8278BAB}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.VirtualPath = "/AppManager"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\JavaWorkspace\AppManagerMobileClient\WebContent\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AppManager\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/AppManager"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\JavaWorkspace\AppManagerMobileClient\WebContent\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AppManager\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\..\..\JavaWorkspace\AppManagerMobileClient\WebContent\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AppManagerMobile.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFA7B0EA-0895-45B4-8B14-C5E95101D317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFA7B0EA-0895-45B4-8B14-C5E95101D317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFA7B0EA-0895-45B4-8B14-C5E95101D317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFA7B0EA-0895-45B4-8B14-C5E95101D317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196C4948-5C37-4111-BE2A-672E68BBEC50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196C4948-5C37-4111-BE2A-672E68BBEC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196C4948-5C37-4111-BE2A-672E68BBEC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196C4948-5C37-4111-BE2A-672E68BBEC50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D53AFA79-4BBD-47BC-8A3E-E386B8278BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53AFA79-4BBD-47BC-8A3E-E386B8278BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53AFA79-4BBD-47BC-8A3E-E386B8278BAB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53AFA79-4BBD-47BC-8A3E-E386B8278BAB}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

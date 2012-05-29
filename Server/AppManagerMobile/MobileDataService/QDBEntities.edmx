@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="QDBModelStoreContainer">
+          <EntitySet Name="Object" EntityType="QDBModel.Store.Object" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ViewHierarchy" EntityType="QDBModel.Store.ViewHierarchy" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Views" EntityType="QDBModel.Store.Views" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="ViewHierarchy_ObjID_fk" Association="QDBModel.Store.ViewHierarchy_ObjID_fk">
+            <End Role="Object" EntitySet="Object" />
+            <End Role="ViewHierarchy" EntitySet="ViewHierarchy" />
+          </AssociationSet>
+          <AssociationSet Name="ViewHierarchy_ViewID_fk" Association="QDBModel.Store.ViewHierarchy_ViewID_fk">
+            <End Role="Views" EntitySet="Views" />
+            <End Role="ViewHierarchy" EntitySet="ViewHierarchy" />
+          </AssociationSet>
+          <AssociationSet Name="Views_RootObjID_fk" Association="QDBModel.Store.Views_RootObjID_fk">
+            <End Role="Object" EntitySet="Object" />
+            <End Role="Views" EntitySet="Views" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="ObjID" />
+          </Key>
+          <Property Name="ObjID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="DiscoveryTime" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Platform" Type="int" Nullable="false" />
+          <Property Name="Proxy" Type="int" Nullable="false" />
+          <Property Name="C1EventCount" Type="int" Nullable="false" />
+          <Property Name="C2EventCount" Type="int" Nullable="false" />
+          <Property Name="C3EventCount" Type="int" Nullable="false" />
+          <Property Name="C4EventCount" Type="int" Nullable="false" />
+          <Property Name="JobCount" Type="int" Nullable="false" />
+          <Property Name="RootMachineObjID" Type="int" />
+          <Property Name="String1" Type="varchar" MaxLength="128" />
+          <Property Name="String2" Type="varchar" MaxLength="128" />
+          <Property Name="String3" Type="varchar" MaxLength="128" />
+          <Property Name="String4" Type="varchar" MaxLength="128" />
+          <Property Name="String5" Type="varchar" MaxLength="128" />
+          <Property Name="String6" Type="varchar" MaxLength="128" />
+          <Property Name="String7" Type="varchar" MaxLength="128" />
+          <Property Name="String8" Type="varchar" MaxLength="128" />
+          <Property Name="ModificationTime" Type="int" Nullable="false" />
+          <Property Name="RootSrvObjID" Type="int" />
+          <Property Name="QDW_Flag" Type="tinyint" />
+          <Property Name="IsValid" Type="int" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="IsMachine" Type="int" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="LinkID" Type="int" />
+          <Property Name="ProxyMachineObjID" Type="int" />
+        </EntityType>
+        <EntityType Name="ViewHierarchy">
+          <Key>
+            <PropertyRef Name="ViewID" />
+            <PropertyRef Name="ObjID" />
+          </Key>
+          <Property Name="ViewID" Type="int" Nullable="false" />
+          <Property Name="ObjID" Type="int" Nullable="false" />
+          <Property Name="ParentObjID" Type="int" />
+          <Property Name="IconID" Type="int" Nullable="false" />
+          <Property Name="ModificationTime" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="QDW_Flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Views">
+          <Key>
+            <PropertyRef Name="ViewID" />
+          </Key>
+          <Property Name="ViewID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CreateUserID" Type="varbinary" Nullable="false" MaxLength="85" />
+          <Property Name="CreateTime" Type="int" Nullable="false" />
+          <Property Name="MapID" Type="int" />
+          <Property Name="RootObjID" Type="int" Nullable="false" />
+          <Property Name="ModificationTime" Type="int" Nullable="false" />
+          <Property Name="ViewType" Type="varchar" MaxLength="40" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="ViewHierarchy_ObjID_fk">
+          <End Role="Object" Type="QDBModel.Store.Object" Multiplicity="1" />
+          <End Role="ViewHierarchy" Type="QDBModel.Store.ViewHierarchy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjID" />
+            </Principal>
+            <Dependent Role="ViewHierarchy">
+              <PropertyRef Name="ObjID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ViewHierarchy_ViewID_fk">
+          <End Role="Views" Type="QDBModel.Store.Views" Multiplicity="1" />
+          <End Role="ViewHierarchy" Type="QDBModel.Store.ViewHierarchy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Views">
+              <PropertyRef Name="ViewID" />
+            </Principal>
+            <Dependent Role="ViewHierarchy">
+              <PropertyRef Name="ViewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Views_RootObjID_fk">
+          <End Role="Object" Type="QDBModel.Store.Object" Multiplicity="1" />
+          <End Role="Views" Type="QDBModel.Store.Views" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjID" />
+            </Principal>
+            <Dependent Role="Views">
+              <PropertyRef Name="RootObjID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetDevices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ViewId" Type="int" Mode="In" />
+          <Parameter Name="ParentId" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="QDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Objects" EntityType="QDBModel.Object" />
+          <EntitySet Name="ViewHierarchies" EntityType="QDBModel.ViewHierarchy" />
+          <EntitySet Name="Views" EntityType="QDBModel.View" />
+          <AssociationSet Name="ViewHierarchy_ObjID_fk" Association="QDBModel.ViewHierarchy_ObjID_fk">
+            <End Role="Object" EntitySet="Objects" />
+            <End Role="ViewHierarchy" EntitySet="ViewHierarchies" />
+          </AssociationSet>
+          <AssociationSet Name="Views_RootObjID_fk" Association="QDBModel.Views_RootObjID_fk">
+            <End Role="Object" EntitySet="Objects" />
+            <End Role="Views" EntitySet="Views" />
+          </AssociationSet>
+          <AssociationSet Name="ViewHierarchy_ViewID_fk" Association="QDBModel.ViewHierarchy_ViewID_fk">
+            <End Role="Views" EntitySet="Views" />
+            <End Role="ViewHierarchy" EntitySet="ViewHierarchies" />
+          </AssociationSet>
+          <FunctionImport Name="GetDevices" ReturnType="Collection(QDBModel.DeviceNode)">
+            <Parameter Name="ViewId" Mode="In" Type="Int32" />
+            <Parameter Name="ParentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="ObjID" />
+          </Key>
+          <Property Name="ObjID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="DiscoveryTime" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Platform" Type="Int32" Nullable="false" />
+          <Property Name="Proxy" Type="Int32" Nullable="false" />
+          <Property Name="C1EventCount" Type="Int32" Nullable="false" />
+          <Property Name="C2EventCount" Type="Int32" Nullable="false" />
+          <Property Name="C3EventCount" Type="Int32" Nullable="false" />
+          <Property Name="C4EventCount" Type="Int32" Nullable="false" />
+          <Property Name="JobCount" Type="Int32" Nullable="false" />
+          <Property Name="RootMachineObjID" Type="Int32" />
+          <Property Name="String1" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="String2" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="String3" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="String4" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="String5" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="String6" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="String7" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="String8" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="ModificationTime" Type="Int32" Nullable="false" />
+          <Property Name="RootSrvObjID" Type="Int32" />
+          <Property Name="QDW_Flag" Type="Byte" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsMachine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="LinkID" Type="Int32" />
+          <Property Name="ProxyMachineObjID" Type="Int32" />
+          <NavigationProperty Name="ViewHierarchies" Relationship="QDBModel.ViewHierarchy_ObjID_fk" FromRole="Object" ToRole="ViewHierarchy" />
+          <NavigationProperty Name="Views" Relationship="QDBModel.Views_RootObjID_fk" FromRole="Object" ToRole="Views" />
+        </EntityType>
+        <EntityType Name="ViewHierarchy">
+          <Key>
+            <PropertyRef Name="ViewID" />
+            <PropertyRef Name="ObjID" />
+          </Key>
+          <Property Name="ViewID" Type="Int32" Nullable="false" />
+          <Property Name="ObjID" Type="Int32" Nullable="false" />
+          <Property Name="ParentObjID" Type="Int32" />
+          <Property Name="IconID" Type="Int32" Nullable="false" />
+          <Property Name="ModificationTime" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="QDW_Flag" Type="Byte" />
+          <NavigationProperty Name="Object" Relationship="QDBModel.ViewHierarchy_ObjID_fk" FromRole="ViewHierarchy" ToRole="Object" />
+          <NavigationProperty Name="View" Relationship="QDBModel.ViewHierarchy_ViewID_fk" FromRole="ViewHierarchy" ToRole="Views" />
+        </EntityType>
+        <EntityType Name="View">
+          <Key>
+            <PropertyRef Name="ViewID" />
+          </Key>
+          <Property Name="ViewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CreateUserID" Type="Binary" Nullable="false" MaxLength="85" FixedLength="false" />
+          <Property Name="CreateTime" Type="Int32" Nullable="false" />
+          <Property Name="MapID" Type="Int32" />
+          <Property Name="RootObjID" Type="Int32" Nullable="false" />
+          <Property Name="ModificationTime" Type="Int32" Nullable="false" />
+          <Property Name="ViewType" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Object" Relationship="QDBModel.Views_RootObjID_fk" FromRole="Views" ToRole="Object" />
+          <NavigationProperty Name="ViewHierarchies" Relationship="QDBModel.ViewHierarchy_ViewID_fk" FromRole="Views" ToRole="ViewHierarchy" />
+        </EntityType>
+        <Association Name="ViewHierarchy_ObjID_fk">
+          <End Role="Object" Type="QDBModel.Object" Multiplicity="1" />
+          <End Role="ViewHierarchy" Type="QDBModel.ViewHierarchy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjID" />
+            </Principal>
+            <Dependent Role="ViewHierarchy">
+              <PropertyRef Name="ObjID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Views_RootObjID_fk">
+          <End Role="Object" Type="QDBModel.Object" Multiplicity="1" />
+          <End Role="Views" Type="QDBModel.View" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Object">
+              <PropertyRef Name="ObjID" />
+            </Principal>
+            <Dependent Role="Views">
+              <PropertyRef Name="RootObjID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ViewHierarchy_ViewID_fk">
+          <End Role="Views" Type="QDBModel.View" Multiplicity="1" />
+          <End Role="ViewHierarchy" Type="QDBModel.ViewHierarchy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Views">
+              <PropertyRef Name="ViewID" />
+            </Principal>
+            <Dependent Role="ViewHierarchy">
+              <PropertyRef Name="ViewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="DeviceNode">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Int32" Name="parentid" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="1" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QDBModelStoreContainer" CdmEntityContainer="QDBEntities">
+          <EntitySetMapping Name="Objects"><EntityTypeMapping TypeName="QDBModel.Object"><MappingFragment StoreEntitySet="Object">
+            <ScalarProperty Name="ObjID" ColumnName="ObjID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+            <ScalarProperty Name="DiscoveryTime" ColumnName="DiscoveryTime" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Platform" ColumnName="Platform" />
+            <ScalarProperty Name="Proxy" ColumnName="Proxy" />
+            <ScalarProperty Name="C1EventCount" ColumnName="C1EventCount" />
+            <ScalarProperty Name="C2EventCount" ColumnName="C2EventCount" />
+            <ScalarProperty Name="C3EventCount" ColumnName="C3EventCount" />
+            <ScalarProperty Name="C4EventCount" ColumnName="C4EventCount" />
+            <ScalarProperty Name="JobCount" ColumnName="JobCount" />
+            <ScalarProperty Name="RootMachineObjID" ColumnName="RootMachineObjID" />
+            <ScalarProperty Name="String1" ColumnName="String1" />
+            <ScalarProperty Name="String2" ColumnName="String2" />
+            <ScalarProperty Name="String3" ColumnName="String3" />
+            <ScalarProperty Name="String4" ColumnName="String4" />
+            <ScalarProperty Name="String5" ColumnName="String5" />
+            <ScalarProperty Name="String6" ColumnName="String6" />
+            <ScalarProperty Name="String7" ColumnName="String7" />
+            <ScalarProperty Name="String8" ColumnName="String8" />
+            <ScalarProperty Name="ModificationTime" ColumnName="ModificationTime" />
+            <ScalarProperty Name="RootSrvObjID" ColumnName="RootSrvObjID" />
+            <ScalarProperty Name="QDW_Flag" ColumnName="QDW_Flag" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="IsMachine" ColumnName="IsMachine" />
+            <ScalarProperty Name="LinkID" ColumnName="LinkID" />
+            <ScalarProperty Name="ProxyMachineObjID" ColumnName="ProxyMachineObjID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ViewHierarchies"><EntityTypeMapping TypeName="QDBModel.ViewHierarchy"><MappingFragment StoreEntitySet="ViewHierarchy">
+            <ScalarProperty Name="ViewID" ColumnName="ViewID" />
+            <ScalarProperty Name="ObjID" ColumnName="ObjID" />
+            <ScalarProperty Name="ParentObjID" ColumnName="ParentObjID" />
+            <ScalarProperty Name="IconID" ColumnName="IconID" />
+            <ScalarProperty Name="ModificationTime" ColumnName="ModificationTime" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="QDW_Flag" ColumnName="QDW_Flag" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Views"><EntityTypeMapping TypeName="QDBModel.View"><MappingFragment StoreEntitySet="Views">
+            <ScalarProperty Name="ViewID" ColumnName="ViewID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="MapID" ColumnName="MapID" />
+            <ScalarProperty Name="RootObjID" ColumnName="RootObjID" />
+            <ScalarProperty Name="ModificationTime" ColumnName="ModificationTime" />
+            <ScalarProperty Name="ViewType" ColumnName="ViewType" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDevices" FunctionName="QDBModel.Store.GetDevices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QDBModel.DeviceNode">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="QDBEntities" ZoomLevel="65">
+        <EntityTypeShape EntityType="QDBModel.Object" Width="1.5" PointX="0.75" PointY="1.125" Height="6.7878222656249978" IsExpanded="true" />
+        <EntityTypeShape EntityType="QDBModel.ViewHierarchy" Width="1.5" PointX="5.25" PointY="4" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="QDBModel.View" Width="1.5" PointX="3" PointY="6.5" Height="3.1340950520833326" IsExpanded="true" />
+        <AssociationConnector Association="QDBModel.ViewHierarchy_ObjID_fk" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.21875" />
+          <ConnectorPoint PointX="5.25" PointY="5.21875" />
+        </AssociationConnector>
+        <AssociationConnector Association="QDBModel.Views_RootObjID_fk" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.2064111328124989" />
+          <ConnectorPoint PointX="3" PointY="7.2064111328124989" />
+        </AssociationConnector>
+        <AssociationConnector Association="QDBModel.ViewHierarchy_ViewID_fk" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.1917941197916662" />
+          <ConnectorPoint PointX="6" PointY="8.1917941197916662" />
+          <ConnectorPoint PointX="6" PointY="6.7494921875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MobileDataService.DiscoveryService" CodeBehind="Service1.svc.cs" Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>
